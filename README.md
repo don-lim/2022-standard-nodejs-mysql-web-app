@@ -12,11 +12,11 @@ I've been running a web application production company for about 20 years. I tri
 - uses functions in another js file with different ways of stating module.exports.
 - uses variables in another js file using exports.
 - uses global variables across the whole web application.
-- uses a file called controller.js to prevent app.js and index.js becoming too long. `Therefore, index.js can have the root directory structures and controller.js can have the most actions called from individual ejs.`
+- uses a file called controller.js to prevent app.js and index.js from becoming too long. `Therefore, index.js can have the root directory structures and controller.js can have the most actions called from individual ejs.`
 - uses fs (filesystem) module to read the modification date of the current file.
-- uses more stable MySQL createPool instead of createConnection. `avoid using createConnection in case your coworker forgets to close it or to prevent filling up the max number of connectons fast.`
-- uses '??' and '?' place holders. (similar to prepared statement) in MySQL. (SQL injection attack or hacking somewhat prevented.)
-- uses 'array push' to build a multiple row JSON object to be inserted to a table.
+- uses more stable MySQL createPool instead of createConnection. `avoid using createConnection in case your coworker forgets to close it or to prevent filling up the max number of connections fast.`
+- uses '??' and '?' placeholders. (similar to prepared statement) in MySQL. (SQL injection attack or hacking somewhat prevented.)
+- uses 'array push' to build a multiple row JSON object to be inserted into a table.
 - uses common partial ejs files for consistent representation of web pages.
 - uses 'fetch' instead of 'ajax' in JQuery.
 - uses a JQuery minimal modal library for better user experience instead of 'alert', 'confirm' or 'prompt'.
@@ -51,7 +51,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 
 ## Notes:
-- HTML, SQL are case insensitive.
+- HTML and SQL are case insensitive.
 - JavaScript is case sensitive.
 - Making comments for HTML: surround with `<!-- -->`
 - Making comments for JavaScript: surround with /* */ OR // on each line
@@ -60,7 +60,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 ---
 
-#### Tips for writing easy-to-maintian reusable codes:
+#### Tips for writing easy-to-maintain reusable codes:
 - Your code will be read by other people. Write so that you won't be misunderstood.
 - Use "" for HTML and use '' for JavaScript and SQL.
 - Use UPPERCASES for SQL commands and lowercases for identifiers. Use the online pretty print SQL formatter.
@@ -78,11 +78,11 @@ UPDATE department SET dept_code='5003', name='Biochemistry' WHERE dept_code='500
 ```
 
 #### Tips for naming things:
-- Always use intuitive names for variables, functions, tables, columns, etc. (Avoid using irrelavant/inconsistent names or names that only you can understand like myRidiculousVar, table_1, mueon_sori-inji)
+- Always use intuitive names for variables, functions, tables, columns, etc. (Avoid using irrelevant/inconsistent names or names that only you can understand like myRidiculousVar, table_1, mueon_sori-inji)
 - For functions and variables in JS: Use camel case like 'sendMassEmail', 'varForJSInAFunction'
 - For HTML and SQL: Use all lowercase with underscores like 'id_for_html', 'table_members_2022', 'column_for_you'
 - For long directory names: Use hyphens like '/how-to-destroy-toxic-people'
-> Some JS process requires converting hyphenated property of CSS to camel case like 'font-size' to 'fontSize', because '-' outside quotes is the reserved keyword for substraction in JS.
+> Some JS process requires converting hyphenated property of CSS to camel case like 'font-size' to 'fontSize', because '-' outside quotes is the reserved keyword for subtraction in JS.
 ``` php
 heading.style.font-size = '2rem'; // doesn't work
 heading.style.fontSize = '2rem'; // does work
