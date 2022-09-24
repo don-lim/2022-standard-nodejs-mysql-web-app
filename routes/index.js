@@ -58,7 +58,7 @@ router.get('/create', (req, res) => {
     else {
       console.log('connected as id ' + connection.threadId);
       // edit your SQL below
-      strsql = 'CREATE TABLE department ('
+      strsql = 'CREATE TABLE IF NOT EXISTS department ('
       +'dept_code INT(11) NOT NULL,'
       +'name VARCHAR(200) NULL DEFAULT NULL COLLATE utf8mb3_general_ci,'
       +'PRIMARY KEY (dept_code) USING BTREE);'
