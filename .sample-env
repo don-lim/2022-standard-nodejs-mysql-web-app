@@ -1,0 +1,17 @@
+MASTER_DB_HOST=""
+MASTER_DB_PORT=3306
+MASTER_DB_USER=""
+MASTER_DB_PW=""
+MASTER_DB_INSTANCE=""
+
+SAMPLE_USER_ID="239482"
+SAMPLE_USER_KEY="foobar"
+SAMPLE_USER_DATA="foobar"
+
+NODE_ENV="production"
+
+S3_BUCKET="YOURS3BUCKET"
+SECRET_KEY="YOURSECRETKEYGOESHERE"
+
+# Fill in the information above and change this file to .env at the server. Don Lim
+# NODE_ENV="production" should be NODE_ENV="development" on a local computer.

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- include a common partial file './partials/head.ejs'  -->
+    <%- include('./partials/head', {title: 'Home - ' + globTitle}); %> 
+  </head>  
+  <body>
+    <header>
+      <%- include('./partials/header', {variant: 'compact'}); %><!-- you can send parameters to ejs  -->
+    </header>
+    <p><%- include('./partials/nav'); %></p><!-- navigation bar  -->
+    <h1><%=globTitle%></h1><!-- a global variable we delared in app.js  -->
+    <p>Welcome to <%=globTitle%> and PhusionPassenger</p>
+    <p><b>Create table</b> and <b>insert rows</b> before you try other menus. You may need to fill in a working MySQL DB connection info in .env file in the app root directory first.</p>
+    <br>
+    <p>globVar = <%=globVar%></p>
+    <p>Your email <%=user_data%></p>    
+    <br>
+    <p><b>index.js file created: </b><%= btime %></p>
+    <p><b>index.js file changed: </b><%= mtime %></p>
+    <p><b>index.ejs file created: </b><%= btime2 %></p>
+    <p><b>index.ejs file changed: </b><%= mtime2 %></p>
+    <br>
+    <footer>
+      <%- include('./partials/footer'); %>
+    </footer>
+    
+  </body>
+</html>

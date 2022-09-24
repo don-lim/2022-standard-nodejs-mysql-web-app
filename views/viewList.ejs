@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- include common partial files from './partials' // adds 'Home - ' in front of the globTitle declear in app.js -->
+    <%- include('./partials/head', {title: 'View List - ' + globTitle}); %> 
+    <script src="/javascripts/jquery.3.6.0.min.js"></script> <!--The performance is better when you store all the script in your local folder.-->
+    <script src="/javascripts/jquery.plainmodal.min.js"></script> <!--This library enables great user experiences.-->
+    <script src="/javascripts/main.js"></script> <!--has all the JS functions for this page (and maybe for other pages in the future)-->
+    <script src="/javascripts/modTemplate.js"></script> <!--has a template for popup window message-->
+    <script> //put a script just for this page
+        /*const handleSubmit = e => {
+            e.preventDefault();
+            const ans = document.activeElement['value'];
+            console.log(ans);
+        };*/
+    </script>
+  </head>  
+  <body>
+    <header>
+      <%- include('./partials/header', {variant: 'compact'}); %>
+    </header>
+    <p><%- include('./partials/nav'); %></p>
+    <h1>View List</h1>
+    <p>View the list in the table</p>
+    <!--form name="form1" onSubmit = {handleSubmit} --> <!--You don't need to use the <form> tag with JQuery. If you leave it alive, the form may get submitted twice and/or reload the page.-->
+        <div class="center" style="text-align:center;padding:15px">Table 1</div>
+        <table style="width:50%" class="center">
+            <tr>
+                <td style="text-align:center">
+                    <b>Code</b>
+                </td>
+                <td style="text-align:center">
+                    <b>Department Name</b>
+                </td>
+                <td colspan=2 style="text-align:center">
+                    <b>Action</b>
+                </td>
+            </tr>
+            <% for (const { dept_code, name } of results) { %>
+                
+                <tr>
+                    <td style="text-align:center">
+                        <%=dept_code%>
+                    </td>
+                    <td style="text-align:center">
+                        <%=name%>
+                    </td>
+                    <td style="text-align:center">
+                        <button 
+                            onclick="modalPrompt(
+                                fillModTemplate('<%=dept_code%>','<%=name%>'),
+                                'submitForm(\'controller/modDept\',\'<%=dept_code%>\')',
+                                'Save changes'                          
+                            )">modify</button>
+                    </td>
+                    <td style="text-align:center">
+                        <button onclick="submitForm('controller/delDept','<%=dept_code%>')">delete</button>
+                    </td>
+                </tr>
+            <% } %>
+            <tr>
+                <td style="text-align:center">
+                    <input type="text" name="dept_code_new" id="dept_code_new" style="width:50px" value="6001">
+                </td>
+                <td style="text-align:center">
+                    <input type="text" name="name_new" id="name_new" style="width:200px" value="Philosophy">
+                </td>
+                <td colspan=2 style="text-align:center">
+                    <button onclick="submitForm('controller/addDept','')">add</button>
+                </td>
+            </tr>
+        </table>
+    <!--/form-->
+    </p>
+    <p style="font-size: 0.9rem;">total count (max. 5): <b><%=results.length%></b><br>
+        total count in DB (max. 1000000): <%if (Array.isArray(results) && results.length){%><b><span style="color:red"><%=results[0].totalCount%></b></span><%}%></p>
+    * Code should be a unique number. Don't enter an existing number.
+    <br><br><br><br>
+    <button id="promptWindow-button">Modal Prompt Window</button><button id="alertWindow-button">Modal Alert Window</button>
+    <br>
+    <br>
+
+
+    <div id="promptWindow">
+        <div class="modal-header">
+          <div class="plainmodal-close" onclick="$('#promptWindow').plainModal('close');">&#215;</div>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <input type="text" id="input_sample">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="plainmodal-close">Close</button>
+          <button class="plainmodal-close btn-primary">Save changes</button>
+        </div>
+    </div>
+    <div id="alertWindow">
+        <h4 class="modal-title">This is a modal.</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="plainmodal-close">&#215;</div>
+    </div>
+    <script>
+    $(function() {
+        var effect = {
+            open: function(duration, complete) {
+                this.css({
+                display:          'block',
+                opacity:          0,
+                top:              -50 - this.outerHeight(),
+                marginTop:        0
+                })
+                .animate({opacity: 1, top: 100}, duration, complete);
+            },
+            close: function(duration, complete) {
+                this.animate({
+                opacity:          0,
+                top:              -50 - this.outerHeight()
+                }, duration, function() {
+                $(this).css({display: 'none'});
+                complete();
+                });
+            }
+            },
+        modalA = $('#promptWindow').plainModal({effect: effect, duration: 500}),
+        modalB = $('#alertWindow').plainModal({effect: effect, duration: 300});
+        $('#promptWindow-button').click(function() { modalA.plainModal('open'); });
+        $('#alertWindow-button').click(function() { modalB.plainModal('open'); });
+    });
+    </script>
+
+
+    <footer>
+      <%- include('./partials/footer'); %>
+    </footer>
+    
+  </body>
+</html>
+
