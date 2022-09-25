@@ -96,6 +96,7 @@ In order to run this web app, you have to have a working MySQL database instance
 https://expressjs.com/th/starter/generator.html<br>
 https://codeforgeek.com/nodejs-mysql-tutorial/<br>
 https://kitty-geno.tistory.com/66?category=960541<br>
+https://github.com/sidorares/node-mysql2/blob/master/documentation/Promise-Wrapper.md
 https://www.digitalocean.com/community/tutorials/how-to-use-ejs-to-template-your-node-application<br>
 https://blog.logrocket.com/how-to-use-ejs-template-node-js-application/<br>
 https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch<br>
@@ -104,6 +105,7 @@ https://www.w3.org/Style/Examples/007/units.en.html<br>
 https://developers.google.com/fonts/docs/getting_started<br>
 
 ## Further Reading
+https://www.geeksforgeeks.org/express-js-express-router-function/<br>
 https://medium.com/@saransh98/node-js-stored-procedure-middleware-b086f5c7119d<br>
 https://stackoverflow.com/questions/30535309/where-should-i-define-js-function-to-call-in-ejs-template<br>
 https://stackoverflow.com/questions/55214160/how-to-add-variable-inside-of-ejs-template<br>

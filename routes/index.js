@@ -1,8 +1,9 @@
 express = require('express'); // This could have been "var[or const] express = require('express')". But, JavaScript usually don't need 'var' in front of a variable. Don Lim
 router = express.Router(); // run Router() function within express. You can omit 'var' or 'const', but let's put 'const' to avoid strange errors we my see.
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const { config } = require('dotenv');
-const execSql = require('./include/dbpool'); // require mysql and createPool with 100 connection limit and .env DB variables.
+const pool = require('./include/dbpool'); // require mysql and createPool with 100 connection limit and .env DB variables.
+const poolPromise = pool.promise();
 
 const filedate = require('./filedate'); // import './filedate.js' from the same directory (.js can be omitted)
 filedate.getFileDate(__filename); // run the function 'getFileDate()' inside the './filedate.js' with the path of the current file and output to console.log
@@ -24,12 +25,45 @@ router.get('/', (req, res, next) => {
   }); 
 });
 
-/*************** http://127.0.0.1:3000/mysqloutput ****************/
+/*************** http://127.0.0.1:3000/mysqloutput multiple query ****************/
 
 strsql = "SELECT COUNT(*) AS count FROM department;"; // Do not declare SQL statement variable outside 'router.get' process like this. The value of 'strsql' will change frequently.
 
+
+router.get("/mysqloutput", async (req, res) => {
+    masterRows = [];
+    strsql = "SELECT COUNT(*) AS count FROM department;"; 
+    strsql2 = "SELECT * FROM department LIMIT 1000;"; 
+    console.log(strsql);
+    const query1 = poolPromise.query(strsql);
+    const query2 = poolPromise.query(strsql2);
+    try{
+      const results = await Promise.all([query1, query2]);
+      results.forEach(([rows, fields]) => masterRows.push(rows));
+      res.send(masterRows);
+    } catch(err) {
+      console.log(err);
+      res.send(err);
+    } finally {
+      pool.end;
+      console.log(`All Tasks are Done`);
+    }
+}); 
+
+/**
+
+router.get("/mysqloutput", async (req, res) => {
+  strsql = "SELECT COUNT(*) AS count FROM department; SELECT * FROM department LIMIT 1000;"; 
+  console.log(strsql);
+  const [rows] = await poolPromise.query(strsql);
+  res.send(rows);
+}); */
+
+
+
+
 router.get("/mysqloutput",(req,res) => {
-  execSql.getConnection((err, connection) => {
+  pool.getConnection((err, connection) => {
     if(err) { // perform if there's an error connecting to the DB
       console.log("err : " + err); 
       res.send(err);
@@ -53,7 +87,7 @@ router.get("/mysqloutput",(req,res) => {
 
 /*************** http://127.0.0.1:3000/create ****************/
 router.get('/create', (req, res) => {
-  execSql.getConnection((err, connection) => {
+  pool.getConnection((err, connection) => {
     if(err) {console.log("err : " + err); res.send(err);}
     else {
       console.log('connected as id ' + connection.threadId);
@@ -78,7 +112,7 @@ router.get('/create', (req, res) => {
 
 /*************** http://127.0.0.1:3000/insert ****************/
 router.get('/insert', (req, res) => {
-  execSql.getConnection((err, connection) => {
+  pool.getConnection((err, connection) => {
     if(err) {console.log("err : " + err); res.send(err);}
     else {
       console.log('connected as id ' + connection.threadId);      
@@ -109,9 +143,10 @@ router.get('/insert', (req, res) => {
 
 /*************** http://127.0.0.1:3000/viewlist ****************/
 router.get('/viewlist', (req, res) => {
-  execSql.getConnection((err, connection) => {
+  pool.getConnection((err, connection) => {
     if(err) {console.log("err : " + err); res.send(err);}
     else {
+      console.log('connected as id ' + connection.threadId); 
       let strsql = 'SELECT *, (SELECT COUNT(*) FROM department LIMIT 1000000) AS totalCount FROM department LIMIT 5'; // Always put a LIMIT. Otherwise, you may paralyze the system.
       console.log(strsql);
       connection.query(strsql, (err, rows) => {
@@ -130,7 +165,7 @@ router.get('/viewlist', (req, res) => {
 
 /*************** http://127.0.0.1:3000/update ****************/
 router.get('/update', (req, res) => {
-  execSql.getConnection((err, connection) => {
+  pool.getConnection((err, connection) => {
     if(err) {console.log("err : " + err); res.send(err);}
     else {
       let strsql = 'UPDATE department SET name="UPD ENG" WHERE dept_code=5001'; 
@@ -145,7 +180,7 @@ router.get('/update', (req, res) => {
 
 /*************** http://127.0.0.1:3000/delete ****************/
 router.get('/delete', (req, res) => {
-  execSql.getConnection((err, connection) => {
+  pool.getConnection((err, connection) => {
     if(err) {console.log("err : " + err); res.send(err);}
     else {
       let strsql = 'DELETE FROM department ORDER BY dept_code DESC LIMIT 1'; 
@@ -160,7 +195,7 @@ router.get('/delete', (req, res) => {
 
 /*************** http://127.0.0.1:3000/drop ****************/
 router.get('/drop', (req, res) => {
-  execSql.getConnection((err, connection) => {
+  pool.getConnection((err, connection) => {
     if(err) {console.log("err : " + err); res.send(err);}
     else {
       let strsql = 'DROP TABLE department'; 

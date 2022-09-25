@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router(); // run Router() function within express.
 const mysql = require('mysql');
-const execSql = require('./include/dbpool'); // require mysql and createPool with 100 connection limit and .env DB variables.
+const pool = require('./include/dbpool'); // require mysql and createPool with 100 connection limit and .env DB variables.
 const { config } = require('dotenv');
 const configFile = require('./include/config');
 
 router.post('/addDept',(req,res) => { // this area is accessed by calling '[hostname/IP:port]/controller/addDept' with a POST method
     console.log('reached controller.js/addDept',req.body); 
-    execSql.getConnection((err, connection) => {
+    pool.getConnection((err, connection) => {
         if(err) {console.log("err : " + err); res.send(err);}
         else {
             console.log('connected as id ' + connection.threadId);      
@@ -31,7 +31,7 @@ router.post('/addDept',(req,res) => { // this area is accessed by calling '[host
 
 router.post('/delDept',(req,res) => { // this area is accessed by calling '[hostname/IP:port]/controller/delDept' with a POST method
     console.log('reached controller.js/delDept',req.body); 
-    execSql.getConnection((err, connection) => {
+    pool.getConnection((err, connection) => {
         if(err) {console.log("err : " + err); res.send(err);}
         else {
             console.log('connected as id ' + connection.threadId);      
@@ -56,7 +56,7 @@ router.post('/delDept',(req,res) => { // this area is accessed by calling '[host
 
 router.post('/modDept',(req,res) => { // this area is accessed by calling '[hostname/IP:port]/controller/modDept' with a POST method
     console.log('reached controller.js/modDept',req.body); 
-    execSql.getConnection((err, connection) => {
+    pool.getConnection((err, connection) => {
         if(err) {console.log("err : " + err); res.send(err);}
         else {
             console.log('connected as id ' + connection.threadId);      
