@@ -110,6 +110,8 @@ https://www.w3.org/Style/Examples/007/units.en.html<br>
 https://developers.google.com/fonts/docs/getting_started<br>
 
 ## Further Reading
+https://www.w3schools.com/Js/js_promise.asp
+https://stackoverflow.com/questions/58218269/promises-in-mysql2
 https://medium.com/@saransh98/node-js-stored-procedure-middleware-b086f5c7119d<br>
 https://stackoverflow.com/questions/30535309/where-should-i-define-js-function-to-call-in-ejs-template<br>
 https://stackoverflow.com/questions/55214160/how-to-add-variable-inside-of-ejs-template<br>
