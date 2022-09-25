@@ -80,7 +80,7 @@ UPDATE department SET dept_code='5003', name='Biochemistry' WHERE dept_code='500
 #### Tips for naming things:
 - Always use intuitive names for variables, functions, tables, columns, etc. (Avoid using irrelevant/inconsistent names or names that only you can understand like myRidiculousVar, table_1, mueon_sori-inji)
 - For functions and variables in JS: Use camel case like 'sendMassEmail', 'varForJSInAFunction'
-- For HTML and SQL: Use all lowercase with underscores like 'id_for_html', 'table_members_2022', 'column_for_you'
+- For HTML and SQL identifiers: Use all lowercase with underscores like 'id_for_html', 'table_members_2022', 'column_for_you'
 - For long directory names: Use hyphens like '/how-to-destroy-toxic-people'
 > Some JS process requires converting hyphenated property of CSS to camel case like 'font-size' to 'fontSize', because '-' outside quotes is the reserved keyword for subtraction in JS.
 ``` php
@@ -89,7 +89,13 @@ heading.style.fontSize = '2rem'; // does work
 ```
 
 ---
-In order to run this web app, you have to have a working MySQL database instance. Set up a MySQL DB with any name for the instance and fill in the DB connection info in the '.env' file in the app root directory. You may want to put your domain in package.json and package-lock.json also. Please, feel free to email me.
+In order to run this web app, you have to have a working MySQL database instance. Set up a MySQL DB with any name for the instance and fill in the DB connection info in the '.env' file in the app root directory. 
+
+To set up a DB connection environment, create a file called '.env' in the app root folder using an editor such as VS Code. Then, open the file called '.sample-env'. Copy everything from '.sample-env' and paste it in your new '.env' file. Fill in the DB connection info. You may also want to put your app name or domain in package.json and package-lock.json.
+
+Move to the folder by runnig 'cd /somefolder/anotherfolder/yourfolder' on your terminal (through running 'cmd' on Windows, Git bash or any ssh client). On your terminal, run 'npm install' or 'sudo npm install' to build '/node_modules' folder. To make your life easier, install 'nodemon' to run node.js without manually restarting every time you make a change. After installing 'nodemon', you can run 'nodemon server.js' and access the site through 'http://127.0.0.1:3000' if the code is running on your local computer. 
+
+Please, feel free to email me.
 
 
 ## References
@@ -105,6 +111,10 @@ https://www.w3.org/Style/Examples/007/units.en.html<br>
 https://developers.google.com/fonts/docs/getting_started<br>
 
 ## Further Reading
+https://nodejs.org/en/docs/guides/nodejs-docker-webapp/<br>
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment<br>
+https://www.w3schools.com/Js/js_promise.asp<br>
+https://stackoverflow.com/questions/58218269/promises-in-mysql2<br>
 https://www.geeksforgeeks.org/express-js-express-router-function/<br>
 https://medium.com/@saransh98/node-js-stored-procedure-middleware-b086f5c7119d<br>
 https://stackoverflow.com/questions/30535309/where-should-i-define-js-function-to-call-in-ejs-template<br>
@@ -117,6 +127,7 @@ https://api.jquery.com/jQuery.post/<br>
 http://hayageek.com/jquery-ajax-form-submit/#multipart-form<br>
 https://stackoverflow.com/questions/5004233/jquery-ajax-post-example-with-php<br>
 https://www.delftstack.com/howto/mysql/update-multiple-columns-in-multiple-rows-with-different-values-in-mysql/
+
 
 
 ###### for my son who was born this month, Sep 2022, Don Lim, IT consultant / donlim@outlook.kr
