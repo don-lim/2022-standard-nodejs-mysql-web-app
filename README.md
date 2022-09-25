@@ -80,7 +80,7 @@ UPDATE department SET dept_code='5003', name='Biochemistry' WHERE dept_code='500
 #### Tips for naming things:
 - Always use intuitive names for variables, functions, tables, columns, etc. (Avoid using irrelevant/inconsistent names or names that only you can understand like myRidiculousVar, table_1, mueon_sori-inji)
 - For functions and variables in JS: Use camel case like 'sendMassEmail', 'varForJSInAFunction'
-- For HTML and SQL: Use all lowercase with underscores like 'id_for_html', 'table_members_2022', 'column_for_you'
+- For HTML and SQL identifiers: Use all lowercase with underscores like 'id_for_html', 'table_members_2022', 'column_for_you'
 - For long directory names: Use hyphens like '/how-to-destroy-toxic-people'
 > Some JS process requires converting hyphenated property of CSS to camel case like 'font-size' to 'fontSize', because '-' outside quotes is the reserved keyword for subtraction in JS.
 ``` php
