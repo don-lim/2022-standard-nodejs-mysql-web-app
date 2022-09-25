@@ -110,6 +110,8 @@ https://www.w3.org/Style/Examples/007/units.en.html<br>
 https://developers.google.com/fonts/docs/getting_started<br>
 
 ## Further Reading
+https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment
 https://www.w3schools.com/Js/js_promise.asp
 https://stackoverflow.com/questions/58218269/promises-in-mysql2
 https://medium.com/@saransh98/node-js-stored-procedure-middleware-b086f5c7119d<br>
@@ -123,6 +125,7 @@ https://api.jquery.com/jQuery.post/<br>
 http://hayageek.com/jquery-ajax-form-submit/#multipart-form<br>
 https://stackoverflow.com/questions/5004233/jquery-ajax-post-example-with-php<br>
 https://www.delftstack.com/howto/mysql/update-multiple-columns-in-multiple-rows-with-different-values-in-mysql/
+
 
 
 ###### for my son who was born this month, Sep 2022, Don Lim, IT consultant / donlim@outlook.kr
