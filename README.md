@@ -89,7 +89,13 @@ heading.style.fontSize = '2rem'; // does work
 ```
 
 ---
-In order to run this web app, you have to have a working MySQL database instance. Set up a MySQL DB with any name for the instance and fill in the DB connection info in the '.env' file in the app root directory. You may want to put your domain in package.json and package-lock.json also. Please, feel free to email me.
+In order to run this web app, you have to have a working MySQL database instance. Set up a MySQL DB with any name for the instance and fill in the DB connection info in the '.env' file in the app root directory. 
+
+To set up a DB connection environment, create a file called '.env' in the app root folder using an editor such as VS Code. Then, open the file called '.sample-env'. Copy everything from '.sample-env' and paste it in your new '.env' file. Fill the DB connection info. You may also want to put your app name or domain in package.json and package-lock.json also. 
+
+Move to the folder by runnig 'cd /somefolder/another/yourfolder' on your terminal (through running 'cmd' on Windows, Git bash or any ssh client). On your terminal, run 'npm install' or 'sudo npm install' to build '/node_modules' folder. To make your life easier, install 'nodemon' to run node.js without restarting every time you make a change. After installing 'nodemon', you can run 'nodemon server.js' and access the site through 'http://127.0.0.1:3000'. 
+
+Please, feel free to email me.
 
 
 ## References
